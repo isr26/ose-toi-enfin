@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://isr26.github.io/ose-toi-enfin/sitemap.xml
+Sitemap: https://osetoienfin.ch/sitemap.xml
