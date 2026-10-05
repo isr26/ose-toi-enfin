@@ -51,7 +51,7 @@
   ]
 }
 </script>
-<script src="./support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -74,19 +74,19 @@
 
   <header style="position: sticky; top: 0; z-index: 20; background: rgba(251,244,238,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid #EBD9CB;">
     <div style="max-width: 1160px; margin: 0 auto; padding: 16px 28px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap;">
-      <a href="#" onClick="{{ goHome }}" style="display: flex; align-items: center; gap: 12px; flex: 0 0 auto;">
-        <img src="assets/phoenix-t.png" alt="" style="height: 42px; width: auto; display: block;">
+      <a href="/" onClick="{{ goHome }}" style="display: flex; align-items: center; gap: 12px; flex: 0 0 auto;">
+        <img src="/assets/phoenix-t.png" alt="" style="height: 42px; width: auto; display: block;">
         <span style="display: flex; flex-direction: column; line-height: 1.1;">
           <span style="font-family: 'Gilda Display', serif; font-size: 19px; letter-spacing: 0.06em; color: #5C2A26;">Ose Toi, Enfin</span>
           <span style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #A08574; margin-top: 3px;">Ivone Reis</span>
         </span>
       </a>
       <nav style="display: flex; align-items: center; gap: 26px; flex-wrap: wrap; margin-left: auto; font-size: 14.5px;">
-        <a href="#" onClick="{{ goHome }}" style="color: {{ navHome }}; white-space: nowrap; flex-shrink: 0;">Accueil</a>
-        <a href="#" onClick="{{ goAccomp }}" style="color: {{ navAccomp }}; white-space: nowrap; flex-shrink: 0;">Mon accompagnement</a>
-        <a href="#" onClick="{{ goParcours }}" style="color: {{ navParcours }}; white-space: nowrap; flex-shrink: 0;">Mon parcours</a>
-        <a href="#" onClick="{{ goTarifs }}" style="color: {{ navTarifs }}; white-space: nowrap; flex-shrink: 0;">Tarifs</a>
-        <a href="#" onClick="{{ goContact }}" style="display: inline-block; padding: 10px 20px; border-radius: 999px; background: #B85C36; color: #FFF7F1; letter-spacing: 0.02em; white-space: nowrap; flex-shrink: 0;" style-hover="background: #5C2A26; color: #FFF7F1;">Prendre contact</a>
+        <a href="/" onClick="{{ goHome }}" style="color: {{ navHome }}; white-space: nowrap; flex-shrink: 0;">Accueil</a>
+        <a href="/mon-accompagnement/" onClick="{{ goAccomp }}" style="color: {{ navAccomp }}; white-space: nowrap; flex-shrink: 0;">Mon accompagnement</a>
+        <a href="/mon-parcours/" onClick="{{ goParcours }}" style="color: {{ navParcours }}; white-space: nowrap; flex-shrink: 0;">Mon parcours</a>
+        <a href="/tarifs/" onClick="{{ goTarifs }}" style="color: {{ navTarifs }}; white-space: nowrap; flex-shrink: 0;">Tarifs</a>
+        <a href="/contact/" onClick="{{ goContact }}" style="display: inline-block; padding: 10px 20px; border-radius: 999px; background: #B85C36; color: #FFF7F1; letter-spacing: 0.02em; white-space: nowrap; flex-shrink: 0;" style-hover="background: #5C2A26; color: #FFF7F1;">Prendre contact</a>
       </nav>
     </div>
   </header>
@@ -100,14 +100,14 @@
           <h1 style="margin: 0; font-family: 'Gilda Display', serif; font-size: clamp(42px, 6vw, 68px); line-height: 1.08; color: #5C2A26; font-weight: 400; text-wrap: pretty;">Mieux se connaître pour libérer son potentiel.</h1>
           <p style="margin: 28px 0 0; font-size: 18.5px; line-height: 1.65; color: #6B5449; max-width: 46ch; text-wrap: pretty;">Vous portez déjà en vous ce dont vous avez besoin. Mon rôle est de vous aider à le retrouver, puis à vous en servir. Vous fixez l'objectif, vous gardez la main, et j'avance à côté de vous.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px;">
-            <a href="#" onClick="{{ goContact }}" style="display: inline-block; padding: 15px 28px; border-radius: 999px; background: #B85C36; color: #FFF7F1; font-size: 15.5px;" style-hover="background: #5C2A26;">Réserver ma première séance</a>
-            <a href="#" onClick="{{ goAccomp }}" style="display: inline-block; padding: 15px 28px; border-radius: 999px; border: 1px solid #DCC3B0; color: #5C2A26;  font-size: 15.5px;" style-hover="background: #F7DFCC; border-color: #F7DFCC;">Voir comment se passe une séance</a>
+            <a href="/contact/" onClick="{{ goContact }}" style="display: inline-block; padding: 15px 28px; border-radius: 999px; background: #B85C36; color: #FFF7F1; font-size: 15.5px;" style-hover="background: #5C2A26;">Réserver ma première séance</a>
+            <a href="/mon-accompagnement/" onClick="{{ goAccomp }}" style="display: inline-block; padding: 15px 28px; border-radius: 999px; border: 1px solid #DCC3B0; color: #5C2A26;  font-size: 15.5px;" style-hover="background: #F7DFCC; border-color: #F7DFCC;">Voir comment se passe une séance</a>
           </div>
           <p style="margin: 26px 0 0; font-size: 13.5px; color: #A08574;">Genève &amp; Vevey · Première séance découverte 1h à CHF 110 · aucun engagement pour la suite</p>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; padding: 24px;">
           <div style="position: relative; width: 100%; max-width: 380px; aspect-ratio: 1; border-radius: 999px; background: radial-gradient(circle at 50% 55%, #F7DFCC 0%, #F3D3BC 60%, #EFC8AE 100%); display: flex; align-items: center; justify-content: center;">
-            <img src="assets/phoenix-t.png" alt="Phénix, emblème d'Ose Toi, Enfin" style="width: 58%; height: auto; display: block; opacity: 0.92;">
+            <img src="/assets/phoenix-t.png" alt="Phénix, emblème d'Ose Toi, Enfin" style="width: 58%; height: auto; display: block; opacity: 0.92;">
           </div>
         </div>
       </section>
@@ -174,7 +174,7 @@
 
       <section style="background: #F7DFCC;">
         <div style="max-width: 900px; margin: 0 auto; padding: 92px 28px; text-align: center;">
-          <img src="assets/phoenix-t.png" alt="" style="height: 64px; width: auto; display: block; margin: 0 auto 34px; opacity: 0.75;">
+          <img src="/assets/phoenix-t.png" alt="" style="height: 64px; width: auto; display: block; margin: 0 auto 34px; opacity: 0.75;">
           <p style="margin: 0; font-family: 'Gilda Display', serif; font-size: clamp(26px, 3.4vw, 38px); line-height: 1.42; color: #5C2A26; text-wrap: pretty;">Le phénix ne renaît pas parce qu'on le lui promet. Il renaît parce qu'il s'en donne les moyens, et surtout parce qu'il se l'autorise.</p>
           <p style="margin: 34px 0 0; font-size: 16.5px; line-height: 1.7; color: #7A4E3B; max-width: 60ch; margin-left: auto; margin-right: auto;">Mon travail consiste à vous aider à vous connaître : comprendre votre propre fonctionnement, c'est ce qui permet de reconnaître ce qui vous retient et de commencer à vous en libérer. On parvient alors peu à peu à poser ses limites, à identifier ses valeurs, à sortir de sa zone de confort. La confiance vient de là.</p>
         </div>
@@ -186,7 +186,7 @@
             <p style="margin: 0 0 18px; font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase; color: #A08574;">Les approches</p>
             <h2 style="margin: 0 0 20px; font-family: 'Gilda Display', serif; font-size: 34px; font-weight: 400; color: #5C2A26;">Cinq portes d'entrée, un même chemin</h2>
             <p style="margin: 0 0 26px; font-size: 16.5px; line-height: 1.7; color: #7A6157;">Je combine plusieurs approches selon ce dont vous avez besoin, séance après séance. Aucune n'est un traitement médical et aucune ne remplace un suivi thérapeutique ou médical en cours.</p>
-            <a href="#" onClick="{{ goAccomp }}" style="font-size: 15.5px; border-bottom: 1px solid #DCC3B0; padding-bottom: 3px;">Comment se déroule une séance</a>
+            <a href="/mon-accompagnement/" onClick="{{ goAccomp }}" style="font-size: 15.5px; border-bottom: 1px solid #DCC3B0; padding-bottom: 3px;">Comment se déroule une séance</a>
           </div>
           <div style="display: flex; flex-direction: column; gap: 2px;">
             <div style="padding: 22px 0; border-top: 1px solid #EBD9CB; display: grid; grid-template-columns: minmax(0,0.42fr) minmax(0,1fr); gap: 20px;">
@@ -220,7 +220,7 @@
               <p style="margin: 0 0 18px; font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase; color: #A08574;">Mon parcours</p>
               <h2 style="margin: 0 0 20px; font-family: 'Gilda Display', serif; font-size: 32px; font-weight: 400; color: #5C2A26; text-wrap: pretty;">J'ai traversé une épreuve qui m'a tout fait revoir</h2>
               <p style="margin: 0 0 26px; font-size: 16.5px; line-height: 1.7; color: #7A6157;">Il y a eu un avant et un après. Je me suis reconstruite, puis réorientée. Ce chemin ne fait pas de moi une experte de votre vie, mais il fait que je sais reconnaître ce que vous traversez.</p>
-              <a href="#" onClick="{{ goParcours }}" style="font-size: 15.5px; border-bottom: 1px solid #DCC3B0; padding-bottom: 3px;">Lire mon parcours</a>
+              <a href="/mon-parcours/" onClick="{{ goParcours }}" style="font-size: 15.5px; border-bottom: 1px solid #DCC3B0; padding-bottom: 3px;">Lire mon parcours</a>
             </div>
             <div style="padding: 34px 32px; background: #FBF4EE; border: 1px solid #EDDCCE; border-radius: 4px;">
               <p style="margin: 0; font-family: 'Gilda Display', serif; font-size: 21px; line-height: 1.5; color: #5C2A26;">« Je ne produis pas le résultat à votre place. Je vous accompagne pour que vous alliez le chercher en vous. »</p>
@@ -392,21 +392,21 @@
             <p style="margin: 0 0 14px; font-family: 'Gilda Display', serif; font-size: 25px; color: #5C2A26;">Première séance découverte</p>
             <p style="margin: 0 0 20px; font-family: 'Gilda Display', serif; font-size: 40px; color: #A9603F;">CHF 110</p>
             <p style="margin: 0 0 26px; font-size: 15px; line-height: 1.7; color: #7A4E3B;">1 heure, à tarif réduit. Le temps de faire connaissance, de poser votre objectif et de voir si ma façon de travailler vous convient.</p>
-            <a href="#" onClick="{{ goContact }}" style="margin-top: auto; display: inline-block; align-self: flex-start; padding: 13px 24px; border-radius: 999px; background: #B85C36; color: #FFF7F1; font-size: 15px;" style-hover="background: #5C2A26;">Réserver</a>
+            <a href="/contact/" onClick="{{ goContact }}" style="margin-top: auto; display: inline-block; align-self: flex-start; padding: 13px 24px; border-radius: 999px; background: #B85C36; color: #FFF7F1; font-size: 15px;" style-hover="background: #5C2A26;">Réserver</a>
           </div>
           <div style="padding: 36px 32px; background: #FDF8F4; border: 1px solid #EDDCCE; border-radius: 4px; display: flex; flex-direction: column;">
             <p style="margin: 0 0 8px; font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #A08574;">Ensuite</p>
             <p style="margin: 0 0 14px; font-family: 'Gilda Display', serif; font-size: 25px; color: #5C2A26;">Séance individuelle</p>
             <p style="margin: 0 0 20px; font-family: 'Gilda Display', serif; font-size: 40px; color: #5C2A26;">CHF 200</p>
             <p style="margin: 0 0 26px; font-size: 15px; line-height: 1.7; color: #7A6157;">1h30, en cabinet à Genève ou à Vevey. Les approches utilisées sont choisies avec vous, séance après séance.</p>
-            <a href="#" onClick="{{ goContact }}" style="margin-top: auto; display: inline-block; align-self: flex-start; padding: 13px 24px; border-radius: 999px; border: 1px solid #DCC3B0; color: #5C2A26; font-size: 15px;" style-hover="background: #F7DFCC; border-color: #F7DFCC;">Prendre rendez-vous</a>
+            <a href="/contact/" onClick="{{ goContact }}" style="margin-top: auto; display: inline-block; align-self: flex-start; padding: 13px 24px; border-radius: 999px; border: 1px solid #DCC3B0; color: #5C2A26; font-size: 15px;" style-hover="background: #F7DFCC; border-color: #F7DFCC;">Prendre rendez-vous</a>
           </div>
           <div style="padding: 36px 32px; background: #FDF8F4; border: 1px solid #EDDCCE; border-radius: 4px; display: flex; flex-direction: column;">
             <p style="margin: 0 0 8px; font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #A08574;">Si vous le souhaitez</p>
             <p style="margin: 0 0 14px; font-family: 'Gilda Display', serif; font-size: 25px; color: #5C2A26;">Suivi sur plusieurs séances</p>
             <p style="margin: 0 0 20px; font-family: 'Gilda Display', serif; font-size: 26px; color: #5C2A26;">Sur demande</p>
             <p style="margin: 0 0 26px; font-size: 15px; line-height: 1.7; color: #7A6157;">Pour un travail de fond, nous pouvons prévoir ensemble un rythme de rendez-vous. Parlons-en simplement lors de la première séance.</p>
-            <a href="#" onClick="{{ goContact }}" style="margin-top: auto; display: inline-block; align-self: flex-start; padding: 13px 24px; border-radius: 999px; border: 1px solid #DCC3B0; color: #5C2A26; font-size: 15px;" style-hover="background: #F7DFCC; border-color: #F7DFCC;">En parler</a>
+            <a href="/contact/" onClick="{{ goContact }}" style="margin-top: auto; display: inline-block; align-self: flex-start; padding: 13px 24px; border-radius: 999px; border: 1px solid #DCC3B0; color: #5C2A26; font-size: 15px;" style-hover="background: #F7DFCC; border-color: #F7DFCC;">En parler</a>
           </div>
         </div>
         <div style="margin-top: 34px; display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; line-height: 1.7; color: #A08574;">
@@ -468,13 +468,13 @@
               </label>
               <label style="display: flex; gap: 11px; align-items: flex-start; font-size: 13px; line-height: 1.6; color: #7A6157; cursor: pointer;">
                 <input type="checkbox" checked="{{ consent }}" onChange="{{ toggleConsent }}" style="margin: 2px 0 0; width: 17px; height: 17px; accent-color: #B85C36; flex: 0 0 auto;">
-                <span>J'accepte que les informations transmises soient utilisées uniquement pour répondre à ma demande et prendre rendez-vous. <a href="#" onClick="{{ goPrivacy }}">Protection des données</a></span>
+                <span>J'accepte que les informations transmises soient utilisées uniquement pour répondre à ma demande et prendre rendez-vous. <a href="/confidentialite/" onClick="{{ goPrivacy }}">Protection des données</a></span>
               </label>
               <label style="display: flex; gap: 11px; align-items: flex-start; font-size: 13px; line-height: 1.6; color: #7A6157; cursor: pointer;">
                 <input type="checkbox" checked="{{ marketing }}" onChange="{{ toggleMarketing }}" style="margin: 2px 0 0; width: 17px; height: 17px; accent-color: #B85C36; flex: 0 0 auto;">
                 <span>Oui, j'aimerais recevoir les nouvelles d'Ose Toi, Enfin : réflexions, pratiques simples, dates de disponibilité et offres promotionnelles.</span>
               </label>
-              <p style="margin: -8px 0 0; padding-left: 28px; font-size: 12.5px; line-height: 1.6; color: #7A6157;">Par e-mail, SMS ou WhatsApp · désinscription en un clic · <a href="#" onClick="{{ goPrivacy }}">Protection des données</a></p>
+              <p style="margin: -8px 0 0; padding-left: 28px; font-size: 12.5px; line-height: 1.6; color: #7A6157;">Par e-mail, SMS ou WhatsApp · désinscription en un clic · <a href="/confidentialite/" onClick="{{ goPrivacy }}">Protection des données</a></p>
               <button onClick="{{ submit }}" disabled="{{ notConsented }}" style="padding: 15px 26px; border: 0; border-radius: 999px; background: {{ submitBg }}; color: #FFF7F1; font-size: 15.5px; cursor: {{ submitCursor }};" style-hover="background: #5C2A26;">{{ submitLabel }}</button>
               <sc-if value="{{ needsFields }}"><p style="margin: 0; font-size: 13.5px; color: #7A6157;">Indiquez votre prénom et un e-mail ou un téléphone, pour que je puisse vous répondre.</p></sc-if>
               <sc-if value="{{ sendError }}"><p style="margin: 0; font-size: 13.5px; color: #A63A2A;">L'envoi a échoué. Réessayez, ou écrivez-moi directement par e-mail ou WhatsApp ci-contre.</p></sc-if>
@@ -500,7 +500,7 @@
           </div>
           <div>
             <h2 style="margin: 0 0 10px; font-family: 'Gilda Display', serif; font-size: 21px; font-weight: 400; color: #5C2A26;">Confidentialité</h2>
-            <p style="margin: 0; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Les échanges tenus en séance sont strictement confidentiels. Les données transmises via le formulaire de contact ou par messagerie servent uniquement à répondre à votre demande et ne sont ni revendues ni transmises à des tiers. Le détail des traitements, des durées de conservation et de vos droits figure dans la <a href="#" onClick="{{ goPrivacy }}">politique de confidentialité</a>.</p>
+            <p style="margin: 0; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Les échanges tenus en séance sont strictement confidentiels. Les données transmises via le formulaire de contact ou par messagerie servent uniquement à répondre à votre demande et ne sont ni revendues ni transmises à des tiers. Le détail des traitements, des durées de conservation et de vos droits figure dans la <a href="/confidentialite/" onClick="{{ goPrivacy }}">politique de confidentialité</a>.</p>
           </div>
           <div>
             <h2 style="margin: 0 0 10px; font-family: 'Gilda Display', serif; font-size: 21px; font-weight: 400; color: #5C2A26;">Rendez-vous et annulation</h2>
@@ -567,7 +567,7 @@
           <h2 style="margin: 0 0 16px; font-family: 'Gilda Display', serif; font-size: 32px; font-weight: 400; color: #5C2A26; text-wrap: pretty;">Le premier pas, c'est de vous l'autoriser</h2>
           <p style="margin: 0 0 30px; font-size: 16.5px; line-height: 1.7; color: #7A6157;">Une première séance découverte d'une heure à CHF 110, sans engagement pour la suite. Écrivez-moi aujourd'hui et nous trouvons un moment qui vous convient.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 14px;">
-            <a href="#" onClick="{{ goContact }}" style="display: inline-block; padding: 14px 26px; border-radius: 999px; background: #B85C36; color: #FFF7F1; font-size: 15.5px; white-space: nowrap;" style-hover="background: #5C2A26;">Prendre contact</a>
+            <a href="/contact/" onClick="{{ goContact }}" style="display: inline-block; padding: 14px 26px; border-radius: 999px; background: #B85C36; color: #FFF7F1; font-size: 15.5px; white-space: nowrap;" style-hover="background: #5C2A26;">Prendre contact</a>
             <a href="https://wa.me/41783242429" style="display: inline-block; padding: 14px 26px; border-radius: 999px; border: 1px solid #DCC3B0; color: #5C2A26; font-size: 15.5px; white-space: nowrap;" style-hover="background: #F7DFCC; border-color: #F7DFCC;">Écrire sur WhatsApp</a>
           </div>
         </div>
@@ -582,7 +582,7 @@
             <input type="checkbox" checked="{{ newsConsent }}" onChange="{{ toggleNewsConsent }}" style="margin: 1px 0 0; width: 16px; height: 16px; accent-color: #B85C36; flex: 0 0 auto;">
             <span>Oui, j'aimerais recevoir les nouvelles d'Ose Toi, Enfin : réflexions, pratiques simples, dates de disponibilité et offres promotionnelles.</span>
           </label>
-          <p style="margin: 10px 0 0; padding-left: 26px; font-size: 12.5px; line-height: 1.6; color: #7A6157;">Par e-mail, SMS ou WhatsApp · désinscription en un clic · <a href="#" onClick="{{ goPrivacy }}">Protection des données</a></p>
+          <p style="margin: 10px 0 0; padding-left: 26px; font-size: 12.5px; line-height: 1.6; color: #7A6157;">Par e-mail, SMS ou WhatsApp · désinscription en un clic · <a href="/confidentialite/" onClick="{{ goPrivacy }}">Protection des données</a></p>
         </div>
       </div>
     </section>
@@ -596,17 +596,17 @@
         <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #CFAE9E;">Ivone Reis<br>Kinésiologie · Magnétisme · Énergétique<br>Genève &amp; Vevey</p>
       </div>
       <div style="display: flex; flex-direction: column; gap: 11px; font-size: 14.5px;">
-        <a href="#" onClick="{{ goHome }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Accueil</a>
-        <a href="#" onClick="{{ goAccomp }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Mon accompagnement</a>
-        <a href="#" onClick="{{ goParcours }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Mon parcours</a>
-        <a href="#" onClick="{{ goTarifs }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Tarifs</a>
-        <a href="#" onClick="{{ goContact }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Contact</a>
+        <a href="/" onClick="{{ goHome }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Accueil</a>
+        <a href="/mon-accompagnement/" onClick="{{ goAccomp }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Mon accompagnement</a>
+        <a href="/mon-parcours/" onClick="{{ goParcours }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Mon parcours</a>
+        <a href="/tarifs/" onClick="{{ goTarifs }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Tarifs</a>
+        <a href="/contact/" onClick="{{ goContact }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Contact</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 11px; font-size: 14.5px;">
         <a href="mailto:ose.toi.enfin.info@gmail.com" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">ose.toi.enfin.info@gmail.com</a>
         <a href="https://wa.me/41783242429" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">+41 78 324 24 29 (WhatsApp)</a>
-        <a href="#" onClick="{{ goMentions }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Mentions légales</a>
-        <a href="#" onClick="{{ goPrivacy }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Protection des données</a>
+        <a href="/mentions-legales/" onClick="{{ goMentions }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Mentions légales</a>
+        <a href="/confidentialite/" onClick="{{ goPrivacy }}" style="color: #E8D0C2;" style-hover="color: #FFFFFF;">Protection des données</a>
       </div>
     </div>
     <div style="max-width: 1160px; margin: 0 auto; padding: 22px 28px 44px; border-top: 1px solid #7A4038;">
@@ -618,6 +618,21 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;pageInitiale&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;accomp&quot;,&quot;parcours&quot;,&quot;tarifs&quot;,&quot;contact&quot;,&quot;mentions&quot;,&quot;privacy&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Aperçu&quot;}}">
+const PAGE_META = {
+  home: { path: '/', title: 'Ose Toi, Enfin — Kinésiologie, Magnétisme & Énergétique | Ivone Reis', description: 'Accompagnement en développement personnel à Genève et Vevey : kinésiologie, magnétisme, PNL, CNV et numérologie. Première séance découverte à CHF 110.' },
+  accomp: { path: '/mon-accompagnement/', title: 'Mon accompagnement — Ose Toi, Enfin', description: "Comment se déroule une séance de kinésiologie, magnétisme et énergétique à Genève et à Vevey, étape par étape." },
+  parcours: { path: '/mon-parcours/', title: 'Mon parcours — Ose Toi, Enfin', description: "Le parcours d'Ivone Reis, de sa reconversion jusqu'à la kinésiologie et au magnétisme, à l'origine d'Ose Toi, Enfin." },
+  tarifs: { path: '/tarifs/', title: 'Tarifs — Ose Toi, Enfin', description: 'Tarifs des séances de kinésiologie, magnétisme et énergétique à Genève et Vevey. Première séance découverte à CHF 110.' },
+  contact: { path: '/contact/', title: 'Prendre contact — Ose Toi, Enfin', description: 'Prenez contact ou réservez votre première séance de kinésiologie, magnétisme et énergétique à Genève ou à Vevey.' },
+  mentions: { path: '/mentions-legales/', title: 'Mentions légales — Ose Toi, Enfin', description: 'Mentions légales du site Ose Toi, Enfin, Ivone Reis, Genève et Vevey.' },
+  privacy: { path: '/confidentialite/', title: 'Protection des données — Ose Toi, Enfin', description: 'Politique de confidentialité et protection des données du site Ose Toi, Enfin.' }
+};
+
+function pageForPath(pathname) {
+  const clean = (pathname || '/').replace(/\/+$/, '') || '/';
+  return Object.keys(PAGE_META).find((key) => (PAGE_META[key].path.replace(/\/+$/, '') || '/') === clean) || null;
+}
+
 class Component extends DCLogic {
   state = { page: 'home', faq: 0, sent: false, subbed: false, consent: false, marketing: false, newsConsent: false, sending: false, sendError: false, subscribing: false, fieldsOk: false };
 
@@ -645,17 +660,49 @@ class Component extends DCLogic {
     }).then((res) => res.ok).catch(() => false);
   }
 
+  updateHead(page) {
+    if (typeof document === 'undefined') return;
+    const meta = PAGE_META[page] || PAGE_META.home;
+    document.title = meta.title;
+    const set = (selector, attr, value) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    };
+    set('meta[name="description"]', 'content', meta.description);
+    set('meta[property="og:title"]', 'content', meta.title);
+    set('meta[property="og:description"]', 'content', meta.description);
+    set('meta[property="og:url"]', 'content', 'https://osetoienfin.ch' + meta.path);
+    set('link[rel="canonical"]', 'href', 'https://osetoienfin.ch' + meta.path);
+  }
+
   go(page) {
     return (e) => {
-      if (e) e.preventDefault();
+      if (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || (typeof e.button === 'number' && e.button !== 0)) return;
+        e.preventDefault();
+      }
       this.setState({ page });
-      if (typeof window !== 'undefined') window.scrollTo(0, 0);
+      this.updateHead(page);
+      if (typeof window !== 'undefined') {
+        const meta = PAGE_META[page] || PAGE_META.home;
+        if (window.location.pathname !== meta.path) window.history.pushState({ page }, '', meta.path);
+        window.scrollTo(0, 0);
+      }
     };
   }
 
   componentDidMount() {
-    const start = this.props.pageInitiale;
-    if (start && start !== 'home') this.setState({ page: start });
+    const fromUrl = typeof window !== 'undefined' ? pageForPath(window.location.pathname) : null;
+    const start = fromUrl || this.props.pageInitiale;
+    if (start && start !== this.state.page) this.setState({ page: start });
+    if (start) this.updateHead(start);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', () => {
+        const page = pageForPath(window.location.pathname) || 'home';
+        this.setState({ page });
+        this.updateHead(page);
+      });
+    }
   }
 
   renderVals() {
