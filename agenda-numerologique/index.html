@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Votre mois numérologique · la lettre de l'agenda 2027 | Ose Toi, Enfin</title>
+<meta name="description" content="Inscription à la lettre mensuelle gratuite « Votre mois numérologique », réservée aux lectrices de l'agenda numérologique 2027.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #f6f3ef; color: #2b2b2b; font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+         font-size: 17px; line-height: 1.6; }
+  main { max-width: 560px; margin: 0 auto; padding: 48px 20px 40px; }
+  .marque { display: flex; align-items: center; gap: 10px; margin: 0 0 36px; font-family: Georgia, serif; font-size: 17px; letter-spacing: 0.04em; color: #5e4a3e; }
+  .marque img { height: 34px; width: auto; }
+  .champs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 14px; }
+  .obligatoire { color: #a3392b; }
+  .petit a { color: #5e4a3e; }
+  .sur-titre { margin: 0 0 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a6d5a; }
+  h1 { margin: 0 0 16px; font-family: Georgia, "Times New Roman", serif; font-weight: normal; font-size: 36px; line-height: 1.15; color: #222; }
+  .intro { margin: 0 0 28px; color: #4a4a4a; }
+  .carte { background: #fff; border-radius: 16px; padding: 24px 22px; margin: 0 0 20px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
+  .carte h2 { margin: 0 0 12px; font-family: Georgia, serif; font-weight: normal; font-size: 20px; color: #222; }
+  .contenu { margin: 0 0 14px; padding-left: 20px; }
+  .contenu li { margin: 0 0 6px; }
+  .contenu .onze { font-family: Georgia, serif; }
+  .bonus { margin: 0; font-style: italic; color: #555; }
+  label { display: block; margin: 0 0 6px; font-size: 15px; color: #444; }
+  .facultatif { color: #888; font-size: 14px; }
+  input[type="text"], input[type="email"] { width: 100%; margin: 0 0 16px; padding: 13px 14px; font: inherit; font-size: 17px; color: #2b2b2b;
+         background: #fbfaf8; border: 1px solid #d9d2ca; border-radius: 10px; }
+  input:focus { outline: 2px solid #8a6d5a; outline-offset: 1px; }
+  .accord { display: flex; gap: 10px; align-items: flex-start; margin: 4px 0 20px; font-size: 14.5px; line-height: 1.5; color: #555; cursor: pointer; }
+  .accord input { flex: none; width: 20px; height: 20px; margin: 1px 0 0; accent-color: #8a6d5a; }
+  button { width: 100%; padding: 15px 20px; font: inherit; font-size: 17px; color: #fff; background: #5e4a3e; border: 0; border-radius: 999px; cursor: pointer; }
+  button:hover { background: #3f3129; }
+  button:disabled { opacity: 0.6; cursor: wait; }
+  .message { margin: 16px 0 0; font-size: 15px; }
+  .message.erreur { color: #a3392b; }
+  .merci h2 { margin-bottom: 8px; }
+  .merci p { margin: 0 0 10px; }
+  .petit { margin: 24px 0 0; font-size: 13.5px; line-height: 1.55; color: #777; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<main>
+  <p class="marque"><img src="/assets/phoenix-t.png" alt="">Ose Toi, Enfin</p>
+  <p class="sur-titre">Bonus de votre agenda 2027</p>
+  <h1>Votre mois numérologique</h1>
+  <p class="intro">Merci d'avoir choisi cet agenda. Pour aller un peu plus loin, recevez chaque mois, gratuitement, la lettre qui l'accompagne.</p>
+
+  <section class="carte" aria-labelledby="titre-contenu">
+    <h2 id="titre-contenu">Au début de chaque mois, vous recevez</h2>
+    <ul class="contenu">
+      <li>l'énergie du mois universel, expliquée simplement ;</li>
+      <li>les jours en <span class="onze">11</span> du mois, à repérer dans votre agenda ;</li>
+      <li>une question pour votre journal.</li>
+    </ul>
+    <p class="bonus">Vous serez aussi prévenue en premier de la sortie de l'agenda 2028.</p>
+  </section>
+
+  <section class="carte" id="bloc-formulaire" aria-labelledby="titre-inscription">
+    <h2 id="titre-inscription">Je m'inscris</h2>
+    <form id="formulaire" novalidate>
+      <div class="champs">
+        <div>
+          <label for="prenom">Votre prénom <span class="obligatoire" aria-hidden="true">*</span></label>
+          <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+        </div>
+        <div>
+          <label for="nom">Votre nom <span class="facultatif">(facultatif)</span></label>
+          <input type="text" id="nom" name="nom" autocomplete="family-name">
+        </div>
+      </div>
+      <label for="email">Votre adresse e-mail <span class="obligatoire" aria-hidden="true">*</span></label>
+      <input type="email" id="email" name="email" autocomplete="email" required>
+      <label class="accord">
+        <input type="checkbox" id="accord" name="accord">
+        <span>J'accepte de recevoir la lettre « Votre mois numérologique » par e-mail. Je peux me désinscrire en un clic, à tout moment.</span>
+      </label>
+      <button type="submit" id="bouton">Recevoir ma lettre du mois</button>
+      <p class="message" id="message" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="carte" id="bloc-bientot" hidden>
+    <h2>Les inscriptions ouvrent dans quelques jours</h2>
+    <p style="margin: 0;">Cette page se prépare pour vous. Repassez bientôt pour recevoir votre lettre du mois.</p>
+  </section>
+
+  <section class="carte merci" id="bloc-merci" hidden aria-live="polite">
+    <h2>Merci, c'est presque fini</h2>
+    <p>Un e-mail de confirmation vient de partir. Cliquez sur le lien qu'il contient pour valider votre inscription.</p>
+    <p>Vous ne le voyez pas ? Regardez aussi dans vos courriers indésirables.</p>
+  </section>
+
+  <p class="petit">Inscription libre et gratuite, désinscription en un clic à tout moment. Votre adresse e-mail sert uniquement à vous envoyer cette lettre : elle n'est ni vendue ni partagée.<br>
+  Responsable : Ose Toi, Enfin, Genève · Contact : ose.toi.enfin.info@gmail.com · <a href="/mentions-legales/">Mentions légales</a></p>
+</main>
+
+<script>
+  // Adresse d'envoi de l'outil de lettre (Brevo). Tant qu'elle est vide, le formulaire est masqué
+  // et la page annonce l'ouverture prochaine des inscriptions : aucune donnée n'est collectée.
+  var ENDPOINT = '';
+  if (!ENDPOINT) {
+    document.getElementById('bloc-formulaire').hidden = true;
+    document.getElementById('bloc-bientot').hidden = false;
+  }
+
+  var form = document.getElementById('formulaire');
+  var message = document.getElementById('message');
+  var bouton = document.getElementById('bouton');
+
+  function afficherErreur(texte) {
+    message.textContent = texte;
+    message.className = 'message erreur';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email').value.trim();
+    var prenom = document.getElementById('prenom').value.trim();
+    var nom = document.getElementById('nom').value.trim();
+    if (!prenom) {
+      afficherErreur('Indiquez votre prénom.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      afficherErreur('Indiquez une adresse e-mail valide, par exemple prenom@exemple.ch.');
+      return;
+    }
+    if (!document.getElementById('accord').checked) {
+      afficherErreur('Cochez la case pour confirmer que vous souhaitez recevoir la lettre.');
+      return;
+    }
+    if (!ENDPOINT) return;
+    bouton.disabled = true;
+    message.textContent = '';
+    var donnees = new FormData();
+    donnees.append('EMAIL', email);
+    donnees.append('PRENOM', prenom);
+    donnees.append('NOM', nom);
+    fetch(ENDPOINT, { method: 'POST', body: donnees, mode: 'no-cors' })
+      .then(function () {
+        document.getElementById('bloc-formulaire').hidden = true;
+        document.getElementById('bloc-merci').hidden = false;
+      })
+      .catch(function () {
+        bouton.disabled = false;
+        afficherErreur('L’inscription n’a pas abouti. Vérifiez votre connexion, puis réessayez.');
+      });
+  });
+</script>
+</body>
+</html>
