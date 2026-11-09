@@ -76,7 +76,7 @@
       <input type="email" id="email" name="email" autocomplete="email" required>
       <label class="accord">
         <input type="checkbox" id="accord" name="accord">
-        <span>J'accepte de recevoir la lettre « Votre mois numérologique » par e-mail. Je peux me désinscrire en un clic, à tout moment.</span>
+        <span>J'accepte de recevoir « Votre mois numérologique », la lettre mensuelle d'Ose Toi, Enfin, par e-mail. Je peux me désinscrire à tout moment.</span>
       </label>
       <button type="submit" id="bouton">Recevoir ma lettre du mois</button>
       <p class="message" id="message" role="status" aria-live="polite"></p>
@@ -94,14 +94,14 @@
     <p>Vous ne le voyez pas ? Regardez aussi dans vos courriers indésirables.</p>
   </section>
 
-  <p class="petit">Inscription libre et gratuite, désinscription en un clic à tout moment. Votre adresse e-mail sert uniquement à vous envoyer cette lettre : elle n'est ni vendue ni partagée.<br>
-  Responsable : Ose Toi, Enfin, Genève · Contact : ose.toi.enfin.info@gmail.com · <a href="/mentions-legales/">Mentions légales</a></p>
+  <p class="petit">Inscription libre et gratuite, désinscription en un clic à tout moment. Vos données servent uniquement à vous envoyer cette lettre : elles ne sont ni vendues ni transmises à des fins commerciales. Les inscriptions et les envois passent par Brevo, mon prestataire d'envoi, qui héberge les données dans l'Union européenne.<br>
+  Responsable : Ose Toi, Enfin, Genève · Contact : ose.toi.enfin.info@gmail.com · <a href="/confidentialite/">Protection des données</a> · <a href="/mentions-legales/">Mentions légales</a></p>
 </main>
 
 <script>
   // Adresse d'envoi de l'outil de lettre (Brevo). Tant qu'elle est vide, le formulaire est masqué
   // et la page annonce l'ouverture prochaine des inscriptions : aucune donnée n'est collectée.
-  var ENDPOINT = '';
+  var ENDPOINT = 'https://3d51565a.sibforms.com/serve/MUIFAPN2P92AdtT0Gx97J5D9SLiTQ42jxPHZyJuEVsEd_W-hLWXlI_5WkAU4UYafLrubZZT3jEdxPxUdPDLrC3PgYMxqP8GBYFmJ2DUn5ghegYA3Q2x5cWBqcnGIzalBySeMVTIlrsn2OZHm1X29hVU8yeyKRha6zcPmQQvUoIYsrGbE1ZOZ00-9lN3MZytg_sxwKkgfL7e2fPP2bA==';
   if (!ENDPOINT) {
     document.getElementById('bloc-formulaire').hidden = true;
     document.getElementById('bloc-bientot').hidden = false;
@@ -140,6 +140,9 @@
     donnees.append('EMAIL', email);
     donnees.append('PRENOM', prenom);
     donnees.append('NOM', nom);
+    donnees.append('OPT_IN', '1');
+    donnees.append('email_address_check', '');
+    donnees.append('locale', 'fr');
     fetch(ENDPOINT, { method: 'POST', body: donnees, mode: 'no-cors' })
       .then(function () {
         document.getElementById('bloc-formulaire').hidden = true;
