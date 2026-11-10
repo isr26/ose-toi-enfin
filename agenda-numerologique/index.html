@@ -6,6 +6,9 @@
 <title>Votre mois numérologique · la lettre de l'agenda 2027 | Ose Toi, Enfin</title>
 <meta name="description" content="Inscription à la lettre mensuelle gratuite « Votre mois numérologique », réservée aux lectrices de l'agenda numérologique 2027.">
 <meta name="robots" content="noindex, nofollow">
+<!-- Sécurité : ce que la page a le droit de charger et où elle peut envoyer des données. À mettre à jour si un nouveau service est ajouté. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://3d51565a.sibforms.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<script src="/securite.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   body { margin: 0; background: #f6f3ef; color: #2b2b2b; font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
@@ -39,6 +42,7 @@
   .message.erreur { color: #a3392b; }
   .merci h2 { margin-bottom: 8px; }
   .merci p { margin: 0 0 10px; }
+  .piege { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
   .petit { margin: 24px 0 0; font-size: 13.5px; line-height: 1.55; color: #777; overflow-wrap: anywhere; }
 </style>
 </head>
@@ -65,15 +69,19 @@
       <div class="champs">
         <div>
           <label for="prenom">Votre prénom <span class="obligatoire" aria-hidden="true">*</span></label>
-          <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+          <input type="text" id="prenom" name="prenom" autocomplete="given-name" maxlength="100" required>
         </div>
         <div>
           <label for="nom">Votre nom <span class="facultatif">(facultatif)</span></label>
-          <input type="text" id="nom" name="nom" autocomplete="family-name">
+          <input type="text" id="nom" name="nom" autocomplete="family-name" maxlength="100">
         </div>
       </div>
       <label for="email">Votre adresse e-mail <span class="obligatoire" aria-hidden="true">*</span></label>
-      <input type="email" id="email" name="email" autocomplete="email" required>
+      <input type="email" id="email" name="email" autocomplete="email" maxlength="254" required>
+      <div class="piege" aria-hidden="true">
+        <label for="zx_controle">Ne pas remplir ce champ</label>
+        <input type="text" id="zx_controle" name="zx_controle" tabindex="-1" autocomplete="off">
+      </div>
       <label class="accord">
         <input type="checkbox" id="accord" name="accord">
         <span>J'accepte de recevoir « Votre mois numérologique », la lettre mensuelle d'Ose Toi, Enfin, par e-mail. Je peux me désinscrire à tout moment.</span>
@@ -110,6 +118,8 @@
   var form = document.getElementById('formulaire');
   var message = document.getElementById('message');
   var bouton = document.getElementById('bouton');
+  // Anti-robots : heure d'ouverture de la page (un envoi en moins de 3 secondes est typique d'un robot).
+  var ouvertA = Date.now();
 
   function afficherErreur(texte) {
     message.textContent = texte;
@@ -118,6 +128,16 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    // Champ piège rempli (invisible pour les personnes) : on affiche le merci sans rien envoyer.
+    if (document.getElementById('zx_controle').value) {
+      document.getElementById('bloc-formulaire').hidden = true;
+      document.getElementById('bloc-merci').hidden = false;
+      return;
+    }
+    if (Date.now() - ouvertA < 3000) {
+      afficherErreur('Merci de patienter quelques secondes, puis de cliquer à nouveau sur le bouton.');
+      return;
+    }
     var email = document.getElementById('email').value.trim();
     var prenom = document.getElementById('prenom').value.trim();
     var nom = document.getElementById('nom').value.trim();

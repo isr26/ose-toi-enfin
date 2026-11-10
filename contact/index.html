@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Sécurité : ce que la page a le droit de charger et où elle peut envoyer des données. À mettre à jour si un nouveau service est ajouté. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' https://unpkg.com/react@18.3.1/umd/react.production.min.js https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js https://unpkg.com/@babel/standalone@7.29.0/babel.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io https://3d51565a.sibforms.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Prendre contact — Ose Toi, Enfin</title>
 <meta name="description" content="Prenez contact ou réservez votre première séance de kinésiologie, magnétisme et énergétique à Genève.">
 <link rel="canonical" href="https://osetoienfin.ch/contact/">
@@ -50,6 +52,7 @@
   ]
 }
 </script>
+<script src="/securite.js"></script>
 <script src="/support.js"></script>
 </head>
 <body>
@@ -517,22 +520,34 @@
             <p style="margin: 0 0 26px; font-family: 'Gilda Display', serif; font-size: 23px; color: #5C2A26;">Votre message</p>
             <div style="display: flex; flex-direction: column; gap: 18px;">
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 18px;">
-                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">Prénom
-                  <input type="text" ref="{{ refPrenom }}" onInput="{{ onField }}" placeholder="Votre prénom" style="width: 100%; padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">Prénom *
+                  <input type="text" ref="{{ refPrenom }}" onInput="{{ onField }}" maxLength="100" placeholder="Votre prénom" style="width: 100%; padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
                 </label>
                 <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">Nom
-                  <input type="text" ref="{{ refNom }}" placeholder="Votre nom de famille" style="width: 100%; padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
+                  <input type="text" ref="{{ refNom }}" maxLength="100" placeholder="Votre nom de famille" style="width: 100%; padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
                 </label>
               </div>
-              <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">E-mail
-                <input type="email" ref="{{ refContact }}" onInput="{{ onField }}" placeholder="prenom.nom@exemple.ch" style="padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
+              <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">E-mail *
+                <input type="email" ref="{{ refContact }}" onInput="{{ onField }}" maxLength="254" placeholder="prenom.nom@exemple.ch" style="padding: 13px 14px; border: 1px solid {{ emailBorder }}; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
               </label>
-              <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">Téléphone
-                <input type="tel" ref="{{ refTel }}" onInput="{{ onField }}" placeholder="+41 79 123 45 67" style="padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
+              <sc-if value="{{ emailError }}"><p style="margin: -8px 0 0; font-size: 13.5px; line-height: 1.6; color: #A63A2A;">Cette adresse e-mail n'est pas valide. Exemple de format attendu : prenom.nom@exemple.ch</p></sc-if>
+              <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">Téléphone *
+                <span style="display: flex; gap: 8px;">
+                  <select ref="{{ refPays }}" onChange="{{ formatTel }}" aria-label="Pays du numéro" style="flex: 0 0 auto; padding: 13px 10px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
+                    <option value="CH">Suisse +41</option>
+                    <option value="FR">France +33</option>
+                    <option value="AUTRE">Autre pays</option>
+                  </select>
+                  <input type="tel" ref="{{ refTel }}" onInput="{{ onField }}" onBlur="{{ formatTel }}" maxLength="30" placeholder="+41 (0) 79 123 45 67" style="flex: 1 1 auto; min-width: 0; padding: 13px 14px; border: 1px solid {{ telBorder }}; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; letter-spacing: normal; text-transform: none; color: #3B2B25;">
+                </span>
               </label>
+              <sc-if value="{{ telError }}"><p style="margin: -8px 0 0; font-size: 13.5px; line-height: 1.6; color: #A63A2A;">Ce numéro de téléphone n'est pas valide. Format attendu : 078 123 45 67 ou 022 123 45 67 pour la Suisse, 06 12 34 56 78 ou 01 23 45 67 89 pour la France. Pour un autre pays, choisissez « Autre pays » et écrivez le numéro avec son indicatif, par exemple +49 151 23456789.</p></sc-if>
               <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #A08574;">Ce que vous souhaitez me dire
-                <textarea rows="5" ref="{{ refMessage }}" placeholder="Quelques mots suffisent : où vous en êtes, et ce que vous aimeriez voir changer." style="padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; line-height: 1.6; letter-spacing: normal; text-transform: none; color: #3B2B25; resize: vertical;"></textarea>
+                <textarea rows="5" ref="{{ refMessage }}" maxLength="5000" placeholder="Quelques mots suffisent : où vous en êtes, et ce que vous aimeriez voir changer." style="padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15.5px; line-height: 1.6; letter-spacing: normal; text-transform: none; color: #3B2B25; resize: vertical;"></textarea>
               </label>
+              <div aria-hidden="true" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">
+                <label>Ne pas remplir ce champ<input type="text" name="zx_controle" ref="{{ refPiege }}" tabIndex="-1" autoComplete="off"></label>
+              </div>
               <label style="display: flex; gap: 11px; align-items: flex-start; font-size: 13px; line-height: 1.6; color: #7A6157; cursor: pointer;">
                 <input type="checkbox" checked="{{ consent }}" onChange="{{ toggleConsent }}" style="margin: 2px 0 0; width: 17px; height: 17px; accent-color: #B85C36; flex: 0 0 auto;">
                 <span>J'accepte que les informations transmises soient utilisées uniquement pour répondre à ma demande et prendre rendez-vous. <a href="/confidentialite/" onClick="{{ goPrivacy }}">Protection des données</a></span>
@@ -543,7 +558,10 @@
               </label>
               <p style="margin: -8px 0 0; padding-left: 28px; font-size: 12.5px; line-height: 1.6; color: #7A6157;">Par e-mail, SMS ou WhatsApp · désinscription en un clic · <a href="/confidentialite/" onClick="{{ goPrivacy }}">Protection des données</a></p>
               <button onClick="{{ submit }}" disabled="{{ notConsented }}" style="padding: 15px 26px; border: 0; border-radius: 999px; background: {{ submitBg }}; color: #FFF7F1; font-size: 15.5px; cursor: {{ submitCursor }};" style-hover="background: #5C2A26;">{{ submitLabel }}</button>
-              <sc-if value="{{ needsFields }}"><p style="margin: 0; font-size: 13.5px; color: #7A6157;">Indiquez votre prénom et un e-mail ou un téléphone, pour que je puisse vous répondre.</p></sc-if>
+              <sc-if value="{{ needsFields }}"><p style="margin: 0; font-size: 13.5px; color: #7A6157;">Indiquez votre prénom, votre e-mail et votre numéro de téléphone, pour que je puisse vous répondre.</p></sc-if>
+              <sc-if value="{{ newsSent }}"><p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #5C2A26;">Dernière étape pour recevoir les nouvelles : confirmez votre inscription grâce à l'e-mail que vous allez recevoir. Pensez à regarder aussi dans vos courriers indésirables.</p></sc-if>
+              <sc-if value="{{ newsFixe }}"><p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #5C2A26;">Comme vous avez indiqué un numéro fixe, les nouvelles vous parviendront par e-mail.</p></sc-if>
+              <sc-if value="{{ tropRapide }}"><p style="margin: 0; font-size: 13.5px; color: #A63A2A;">Merci de patienter quelques secondes, puis de cliquer à nouveau sur le bouton d'envoi.</p></sc-if>
               <sc-if value="{{ sendError }}"><p style="margin: 0; font-size: 13.5px; color: #A63A2A;">L'envoi a échoué. Réessayez, ou écrivez-moi directement par e-mail ou WhatsApp ci-contre.</p></sc-if>
               <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #A08574;">Ce que vous m'écrivez reste entre nous. Vos informations me servent uniquement à vous répondre et ne sont utilisées à aucune autre fin. Vous pouvez demander leur suppression quand vous le souhaitez.</p>
             </div>
@@ -593,15 +611,15 @@
           </div>
           <div>
             <h2 style="margin: 0 0 10px; font-family: 'Gilda Display', serif; font-size: 21px; font-weight: 400; color: #5C2A26;">Quelles données et pour quoi faire</h2>
-            <p style="margin: 0 0 14px; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Formulaire de contact et messagerie : prénom, nom, e-mail ou numéro de téléphone et contenu de votre message. Ces données servent uniquement à vous répondre et à convenir d'un rendez-vous. Base légale : votre consentement, puis l'exécution de notre relation contractuelle.</p>
-            <p style="margin: 0 0 14px; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Nouvelles et offres promotionnelles : votre adresse e-mail et, si vous l'avez renseigné, votre numéro de téléphone, uniquement si vous avez coché la case correspondante, distincte de celle nécessaire au traitement de votre demande. Ces informations vous parviennent par e-mail, SMS ou message WhatsApp, selon les coordonnées que vous m'avez laissées. Votre inscription est confirmée avant le premier envoi, et vous pouvez y mettre fin à tout moment : lien de désinscription dans chaque e-mail, ou simple message « stop » par SMS ou WhatsApp.</p>
+            <p style="margin: 0 0 14px; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Formulaire de contact et messagerie : prénom, nom, adresse e-mail, numéro de téléphone et contenu de votre message. Ces données servent uniquement à vous répondre et à convenir d'un rendez-vous. Base légale : votre consentement, puis l'exécution de notre relation contractuelle.</p>
+            <p style="margin: 0 0 14px; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Nouvelles et offres promotionnelles : votre prénom, votre nom, votre adresse e-mail et votre numéro de téléphone (mobile ou fixe), uniquement si vous avez coché la case correspondante, distincte de celle nécessaire au traitement de votre demande. Ces informations sont enregistrées chez Brevo, mon prestataire d'envoi, et vous parviennent par e-mail, SMS ou message WhatsApp. Votre inscription est confirmée par un e-mail avant le premier envoi, et vous pouvez y mettre fin à tout moment : lien de désinscription dans chaque e-mail, ou simple message « stop » par SMS ou WhatsApp.</p>
             <p style="margin: 0 0 14px; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Lettre « Votre mois numérologique », réservée aux lectrices de l'agenda : votre prénom, votre nom si vous l'indiquez, et votre adresse e-mail. Ces données servent uniquement à vous envoyer cette lettre, par e-mail. Votre inscription n'est enregistrée qu'après un clic sur le lien de l'e-mail de confirmation, et chaque lettre contient un lien de désinscription. Base légale : votre consentement.</p>
             <p style="margin: 0 0 14px; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Suivi des séances : je prends des notes limitées à ce qui est utile à votre accompagnement. Elles peuvent comporter des informations sensibles ; elles ne sont recueillies qu'avec votre accord, conservées de manière sécurisée et ne sont jamais partagées.</p>
             <p style="margin: 0; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Facturation : les données nécessaires à l'établissement des reçus et à mes obligations comptables.</p>
           </div>
           <div>
             <h2 style="margin: 0 0 10px; font-family: 'Gilda Display', serif; font-size: 21px; font-weight: 400; color: #5C2A26;">Qui y a accès</h2>
-            <p style="margin: 0; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Moi seule lis vos messages. Vos données ne sont ni vendues, ni louées, ni transmises à des tiers à des fins commerciales. Quatre prestataires techniques interviennent toutefois : GitHub, qui héberge ce site, dont les serveurs se situent notamment aux États-Unis, et qui enregistre l'adresse IP des visiteurs pour des raisons de sécurité ; Formspree, le service qui transmet le formulaire de contact vers ma boîte e-mail, dont les serveurs se situent aux États-Unis ; Brevo, le service qui gère les inscriptions et l'envoi de la lettre « Votre mois numérologique », entreprise française qui héberge les données dans l'Union européenne ; et mon service de messagerie. Chacun agit sur mes instructions ; GitHub et Brevo peuvent en outre utiliser certaines données techniques pour la sécurité de leurs services, par exemple pour repérer des tentatives de fraude. Le transfert vers GitHub repose sur sa certification au Swiss-U.S. Data Privacy Framework ; celui vers Formspree, comme les éventuels transferts des sous-traitants de Brevo hors d'Europe, sur les clauses contractuelles types de la Commission européenne, reconnues par la Suisse. Si vous préférez éviter ces transferts pour vos messages, écrivez-moi directement par e-mail ou WhatsApp.</p>
+            <p style="margin: 0; font-size: 15.5px; line-height: 1.75; color: #7A6157;">Moi seule lis vos messages. Vos données ne sont ni vendues, ni louées, ni transmises à des tiers à des fins commerciales. Quatre prestataires techniques interviennent toutefois : GitHub, qui héberge ce site, dont les serveurs se situent notamment aux États-Unis, et qui enregistre l'adresse IP des visiteurs pour des raisons de sécurité ; Formspree, le service qui transmet le formulaire de contact vers ma boîte e-mail, dont les serveurs se situent aux États-Unis ; Brevo, le service qui gère les inscriptions et l'envoi de mes lettres et nouvelles, entreprise française qui héberge les données dans l'Union européenne ; et mon service de messagerie. Chacun agit sur mes instructions ; GitHub et Brevo peuvent en outre utiliser certaines données techniques pour la sécurité de leurs services, par exemple pour repérer des tentatives de fraude. Le transfert vers GitHub repose sur sa certification au Swiss-U.S. Data Privacy Framework ; celui vers Formspree, comme les éventuels transferts des sous-traitants de Brevo hors d'Europe, sur les clauses contractuelles types de la Commission européenne, reconnues par la Suisse. Si vous préférez éviter ces transferts pour vos messages, écrivez-moi directement par e-mail ou WhatsApp.</p>
           </div>
           <div>
             <h2 style="margin: 0 0 10px; font-family: 'Gilda Display', serif; font-size: 21px; font-weight: 400; color: #5C2A26;">Durée de conservation</h2>
@@ -642,15 +660,9 @@
         <div style="padding: 32px 30px; background: #FBF4EE; border: 1px solid #EDDCCE; border-radius: 4px;">
           <p style="margin: 0 0 8px; font-family: 'Gilda Display', serif; font-size: 21px; color: #5C2A26;">Rester en lien</p>
           <p style="margin: 0 0 20px; font-size: 14.5px; line-height: 1.65; color: #7A6157;">Quelques mots par saison : une réflexion, une pratique simple, les dates de disponibilité et, à l'occasion, une offre promotionnelle. Rien de plus.</p>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <input type="email" ref="{{ refNews }}" placeholder="Votre e-mail" style="flex: 1 1 160px; min-width: 0; padding: 13px 14px; border: 1px solid #E3CEBC; border-radius: 3px; background: #FFFDFB; font-size: 15px;">
-            <button onClick="{{ subscribe }}" style="padding: 13px 22px; border: 1px solid #B85C36; border-radius: 3px; background: none; color: #B85C36; font-size: 15px; cursor: pointer;" style-hover="background: #B85C36; color: #FFF7F1;">{{ subLabel }}</button>
-          </div>
-          <label style="display: flex; gap: 10px; align-items: flex-start; margin: 16px 0 0; font-size: 12.5px; line-height: 1.6; color: #7A6157; cursor: pointer;">
-            <input type="checkbox" checked="{{ newsConsent }}" onChange="{{ toggleNewsConsent }}" style="margin: 1px 0 0; width: 16px; height: 16px; accent-color: #B85C36; flex: 0 0 auto;">
-            <span>Oui, j'aimerais recevoir les nouvelles d'Ose Toi, Enfin : réflexions, pratiques simples, dates de disponibilité et offres promotionnelles.</span>
-          </label>
-          <p style="margin: 10px 0 0; padding-left: 26px; font-size: 12.5px; line-height: 1.6; color: #7A6157;">Par e-mail, SMS ou WhatsApp · désinscription en un clic · <a href="/confidentialite/" onClick="{{ goPrivacy }}">Protection des données</a></p>
+          <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.65; color: #7A6157;">L'inscription se fait dans le formulaire de contact : cochez la case des nouvelles, avec ou sans message.</p>
+          <a href="/contact/" onClick="{{ goContact }}" style="display: inline-block; padding: 13px 22px; border: 1px solid #B85C36; border-radius: 3px; color: #B85C36; font-size: 15px;" style-hover="background: #B85C36; color: #FFF7F1;">Je m'inscris</a>
+          <p style="margin: 14px 0 0; font-size: 12.5px; line-height: 1.6; color: #7A6157;">Par e-mail, SMS ou WhatsApp · désinscription en un clic · <a href="/confidentialite/" onClick="{{ goPrivacy }}">Protection des données</a></p>
         </div>
       </div>
     </section>
@@ -701,22 +713,110 @@ function pageForPath(pathname) {
   return Object.keys(PAGE_META).find((key) => (PAGE_META[key].path.replace(/\/+$/, '') || '/') === clean) || null;
 }
 
+// Numéro au format international (+ et indicatif, sans espaces), ex. +41781234567 ou +41221234567.
+// Suisse et France : mobiles et fixes acceptés. Renvoie null si le numéro n'est pas valide.
+function normaliserTel(brut, pays) {
+  const s = String(brut || '').trim();
+  if (!s || /[^0-9+\s().\/-]/.test(s)) return null;
+  let d = s.replace(/[\s().\/-]/g, '');
+  if ((d.match(/\+/g) || []).length > 1 || d.indexOf('+') > 0) return null;
+  if (d.startsWith('00')) d = '+' + d.slice(2);
+  // « +41 079… » ou « +41 (0)22… » : le 0 n'existe pas au format international suisse ni français, on le retire.
+  if (d.startsWith('+410') || d.startsWith('+330')) d = d.slice(0, 3) + d.slice(4);
+  if (d.startsWith('+')) {
+    const n = d.slice(1);
+    if (!/^[1-9]\d{7,14}$/.test(n)) return null;
+    if (n.startsWith('41')) return /^41[2-9]\d{8}$/.test(n) ? d : null;
+    if (n.startsWith('33')) return /^33[1-79]\d{8}$/.test(n) ? d : null;
+    return d;
+  }
+  if (pays === 'CH') { const m = d.match(/^0?([2-9]\d{8})$/); return m ? '+41' + m[1] : null; }
+  if (pays === 'FR') { const m = d.match(/^0?([1-79]\d{8})$/); return m ? '+33' + m[1] : null; }
+  return null;
+}
+
+// Numéro fixe suisse ou français : il ne reçoit ni SMS ni WhatsApp. Les autres pays ne sont pas distingués.
+function estFixe(tel) {
+  const t = tel || '';
+  if (t.startsWith('+41')) return !/^\+417[4-9]/.test(t);
+  if (t.startsWith('+33')) return !/^\+33[67]/.test(t);
+  return false;
+}
+
+// Indicatifs proposés par le formulaire Brevo « Rester en lien » (liste reprise de son code HTML).
+const INDICATIFS_BREVO = ('93 358 355 213 1684 376 244 1264 672 1268 54 374 297 61 43 994 1242 973 880 1246 375 32 501 229 1441 975 591 599 387 267 47 55 246 673 359 226 257 855 237 1 34 238 1345 236 235 56 86 57 269 242 243 682 506 225 385 53 357 420 45 253 1767 1809 1829 1849 593 20 503 240 291 372 251 500 298 679 33 594 689 262 241 220 995 49 233 350 30 299 1473 590 1671 502 44 224 245 592 509 379 504 852 36 354 91 62 98 964 353 972 39 1876 81 962 7 254 686 850 82 965 996 856 371 961 266 231 218 423 370 352 853 389 261 265 60 960 223 356 692 596 222 230 52 691 373 377 976 382 1664 212 258 95 264 674 977 31 687 64 505 227 234 683 1670 968 92 680 970 507 675 595 51 63 48 351 1787 974 383 40 250 290 1869 1758 508 1784 685 378 239 966 221 381 248 232 65 1721 421 386 677 252 27 211 94 249 597 268 46 41 963 886 992 255 66 670 228 690 676 1868 216 90 993 1649 688 256 380 971 598 998 678 58 84 1284 1340 681 967 260 263')
+  .split(' ').sort((a, b) => b.length - a.length);
+
+// Sépare +41781234567 en ['+41', '781234567'] : format des champs SMS__COUNTRY_CODE et SMS de Brevo
+// (chiffres seulement, 5 à 15). Renvoie null si l'indicatif n'est pas dans la liste de Brevo.
+function separerIndicatif(tel) {
+  if (!tel) return null;
+  const n = tel.slice(1);
+  const code = INDICATIFS_BREVO.find((c) => n.startsWith(c));
+  if (!code) return null;
+  const numero = n.slice(code.length);
+  return /^[0-9]{5,15}$/.test(numero) ? ['+' + code, numero] : null;
+}
+
+// Affichage lisible d'un numéro normalisé : +41 79 123 45 67, +33 6 12 34 56 78, sinon +49 15123456789.
+// avecZero (affichage sur le site) : +41 (0) 79 123 45 67 et +33 (0) 6 12 34 56 78.
+function formaterTel(tel, avecZero) {
+  if (!tel) return '';
+  const zero = avecZero ? ' (0)' : '';
+  let m = tel.match(/^\+41(\d{2})(\d{3})(\d{2})(\d{2})$/);
+  if (m) return '+41' + zero + ' ' + m.slice(1).join(' ');
+  m = tel.match(/^\+33(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/);
+  if (m) return '+33' + zero + ' ' + m.slice(1).join(' ');
+  const p = separerIndicatif(tel);
+  return p ? p[0] + ' ' + p[1] : tel;
+}
+
+function emailValide(e) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(e || '').trim());
+}
+
 class Component extends DCLogic {
-  state = { page: 'home', faq: 0, sent: false, subbed: false, consent: false, marketing: false, newsConsent: false, sending: false, sendError: false, subscribing: false, fieldsOk: false };
+  state = { page: 'home', faq: 0, sent: false, consent: false, marketing: false, sending: false, sendError: false, fieldsOk: false, showErrors: false, emailError: false, telError: false, newsSent: false, newsFixe: false, tropRapide: false };
+
+  // Anti-robots : heure d'ouverture de la page (un envoi en moins de 3 secondes est typique d'un robot).
+  ouvertA = Date.now();
 
   FORM_ENDPOINT = 'https://formspree.io/f/mzezpkyl';
+  // Formulaire Brevo « Rester en lien » (double opt-in). Vide : aucune inscription n'est envoyée à Brevo.
+  BREVO_NEWS_ENDPOINT = 'https://3d51565a.sibforms.com/serve/MUIFAOI42IBN-UEdk1VKjzLUdEHqh0Eui4u-8WgjtDykilnvioo669dsWygJltFpnRb4_7SuExYFX3pd6bJLgbYd0xhr0IyaYoKBg3Vp8GFA86xxdpUFm7aHCMIDhwjyBCUUG98xfnAKKLwr1eWiOuexMv08uk_DQE0IeAy3cR2KvHWP46R7_4dWQCg7l-sQaY3IbVtRsiH1YeJf3A==';
 
   refPrenom = React.createRef();
   refNom = React.createRef();
   refContact = React.createRef();
+  refPays = React.createRef();
   refTel = React.createRef();
   refMessage = React.createRef();
-  refNews = React.createRef();
+  refPiege = React.createRef();
+
+  valeurs() {
+    const v = (r) => (r.current ? String(r.current.value || '').trim() : '');
+    const pays = this.refPays.current ? this.refPays.current.value : 'CH';
+    return { prenom: v(this.refPrenom), nom: v(this.refNom), email: v(this.refContact), telBrut: v(this.refTel), pays, message: v(this.refMessage) };
+  }
 
   checkFields() {
-    const v = (r) => (r.current ? String(r.current.value || '').trim() : '');
-    const ok = v(this.refPrenom) !== '' && (v(this.refContact) !== '' || v(this.refTel) !== '');
-    if (ok !== this.state.fieldsOk) this.setState({ fieldsOk: ok });
+    const f = this.valeurs();
+    const ok = f.prenom !== '' && f.email !== '' && f.telBrut !== '';
+    const maj = {};
+    if (ok !== this.state.fieldsOk) maj.fieldsOk = ok;
+    if (this.state.showErrors) {
+      maj.emailError = !emailValide(f.email);
+      maj.telError = separerIndicatif(normaliserTel(f.telBrut, f.pays)) === null;
+    }
+    if (Object.keys(maj).length) this.setState(maj);
+  }
+
+  sendToBrevo(data) {
+    if (!this.BREVO_NEWS_ENDPOINT) return Promise.resolve();
+    const corps = new FormData();
+    Object.keys(data).forEach((k) => corps.append(k, data[k]));
+    // Réponse illisible (mode no-cors) : seule l'arrivée de l'e-mail de confirmation prouve l'inscription.
+    return fetch(this.BREVO_NEWS_ENDPOINT, { method: 'POST', body: corps, mode: 'no-cors' }).catch(() => {});
   }
 
   sendToFormspree(data) {
@@ -791,11 +891,26 @@ class Component extends DCLogic {
       refPrenom: this.refPrenom,
       refNom: this.refNom,
       refContact: this.refContact,
+      refPays: this.refPays,
       refTel: this.refTel,
       refMessage: this.refMessage,
-      refNews: this.refNews,
+      emailError: this.state.emailError,
+      telError: this.state.telError,
+      emailBorder: this.state.emailError ? '#A63A2A' : '#E3CEBC',
+      telBorder: this.state.telError ? '#A63A2A' : '#E3CEBC',
+      newsSent: this.state.newsSent,
+      newsFixe: this.state.newsFixe,
+      tropRapide: this.state.tropRapide,
+      refPiege: this.refPiege,
       consent: this.state.consent,
       onField: () => this.checkFields(),
+      // En quittant le champ (ou en changeant de pays) : un numéro valide s'affiche +41 (0) 79 123 45 67.
+      formatTel: () => {
+        const f = this.valeurs();
+        const tel = normaliserTel(f.telBrut, f.pays);
+        if (separerIndicatif(tel) && this.refTel.current) this.refTel.current.value = formaterTel(tel, true);
+        this.checkFields();
+      },
       canSend: this.state.consent && this.state.fieldsOk && !this.state.sending,
       needsFields: this.state.consent && !this.state.fieldsOk && !this.state.sent,
       notConsented: !this.state.consent || !this.state.fieldsOk || this.state.sending,
@@ -805,8 +920,6 @@ class Component extends DCLogic {
       toggleConsent: () => this.setState((s) => ({ consent: !s.consent })),
       marketing: this.state.marketing,
       toggleMarketing: () => this.setState((s) => ({ marketing: !s.marketing })),
-      newsConsent: this.state.newsConsent,
-      toggleNewsConsent: () => this.setState((s) => ({ newsConsent: !s.newsConsent })),
       navHome: nav('home'),
       navAccomp: nav('accomp'),
       navParcours: nav('parcours'),
@@ -827,46 +940,57 @@ class Component extends DCLogic {
       submit: (e) => {
         if (e) e.preventDefault();
         if (!this.state.consent || !this.state.fieldsOk || this.state.sending) return;
-        const v = (r) => (r.current ? String(r.current.value || '').trim() : '');
-        this.setState({ sending: true, sendError: false });
+        const viderChamps = () => [this.refPrenom, this.refNom, this.refContact, this.refTel, this.refMessage].forEach((r) => { if (r.current) r.current.value = ''; });
+        // Champ piège rempli (invisible pour les personnes) : on affiche « reçu » sans rien envoyer, le robot ne voit rien.
+        if (this.refPiege.current && this.refPiege.current.value) {
+          viderChamps();
+          this.setState({ sent: true, consent: false, marketing: false, fieldsOk: false });
+          return;
+        }
+        if (Date.now() - this.ouvertA < 3000) {
+          this.setState({ tropRapide: true });
+          return;
+        }
+        const f = this.valeurs();
+        const tel = normaliserTel(f.telBrut, f.pays);
+        const telBrevo = separerIndicatif(tel);
+        const emailOk = emailValide(f.email);
+        if (!emailOk || telBrevo === null) {
+          this.setState({ showErrors: true, emailError: !emailOk, telError: telBrevo === null });
+          return;
+        }
+        const news = this.state.marketing;
+        const fixe = estFixe(tel);
+        const typeTel = fixe ? ' (fixe)' : (/^\+(41|33)/.test(tel) ? ' (mobile)' : '');
+        this.setState({ sending: true, sendError: false, showErrors: false, emailError: false, telError: false, tropRapide: false });
         this.sendToFormspree({
-          _subject: 'Nouvelle demande — Ose Toi, Enfin',
-          prenom: v(this.refPrenom),
-          nom: v(this.refNom),
-          email: v(this.refContact),
-          telephone: v(this.refTel),
-          message: v(this.refMessage),
-          newsletter: this.state.marketing ? 'oui' : 'non'
+          _subject: news ? 'Nouvelle demande + inscription aux nouvelles — Ose Toi, Enfin' : 'Nouvelle demande — Ose Toi, Enfin',
+          prenom: f.prenom,
+          nom: f.nom,
+          email: f.email,
+          telephone: formaterTel(tel) + typeTel,
+          message: f.message,
+          newsletter: news ? 'oui' : 'non'
         }).then((ok) => {
           if (ok) {
-            [this.refPrenom, this.refNom, this.refContact, this.refTel, this.refMessage].forEach((r) => { if (r.current) r.current.value = ''; });
-            this.setState({ sent: true, sending: false, consent: false, marketing: false, fieldsOk: false });
+            if (news) {
+              // Un seul champ sur le site : le mobile va dans SMS, le fixe dans LANDLINE_NUMBER (l'autre reste vide,
+              // comme le ferait le formulaire Brevo lui-même). Hors Suisse et France, le numéro va dans SMS.
+              this.sendToBrevo({
+                EMAIL: f.email, PRENOM: f.prenom, NOM: f.nom,
+                SMS__COUNTRY_CODE: telBrevo[0], SMS: fixe ? '' : telBrevo[1],
+                LANDLINE_NUMBER__COUNTRY_CODE: telBrevo[0], LANDLINE_NUMBER: fixe ? telBrevo[1] : '',
+                OPT_IN: '1', email_address_check: '', locale: 'fr'
+              });
+            }
+            viderChamps();
+            this.setState({ sent: true, sending: false, consent: false, marketing: false, fieldsOk: false, newsSent: news && !!this.BREVO_NEWS_ENDPOINT, newsFixe: news && fixe && !!this.BREVO_NEWS_ENDPOINT });
           } else {
             this.setState({ sending: false, sendError: true });
           }
         });
       },
-      submitLabel: this.state.sending ? 'Envoi en cours…' : (this.state.sent ? 'Message reçu — je vous réponds très vite' : 'Envoyer mon message'),
-      subscribe: (e) => {
-        if (e) e.preventDefault();
-        if (!this.state.newsConsent || this.state.subscribing) return;
-        const email = this.refNews.current ? String(this.refNews.current.value || '').trim() : '';
-        if (!email) return;
-        this.setState({ subscribing: true });
-        this.sendToFormspree({
-          _subject: 'Inscription newsletter — Ose Toi, Enfin',
-          email: email,
-          type: 'newsletter'
-        }).then((ok) => {
-          if (ok) {
-            if (this.refNews.current) this.refNews.current.value = '';
-            this.setState({ subbed: true, subscribing: false, newsConsent: false });
-          } else {
-            this.setState({ subscribing: false });
-          }
-        });
-      },
-      subLabel: this.state.subscribing ? 'Envoi…' : (this.state.subbed ? 'Merci' : "S'inscrire")
+      submitLabel: this.state.sending ? 'Envoi en cours…' : (this.state.sent ? 'Message reçu — je vous réponds très vite' : 'Envoyer mon message')
     };
   }
 }
